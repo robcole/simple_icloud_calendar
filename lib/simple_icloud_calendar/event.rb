@@ -2,13 +2,6 @@ module SimpleIcloudCalendar
   class Event
     attr_accessor :summary, :start_date, :end_date, :location, :rules, :schedule
 
-    def self.create_events
-      calendar = Icalendar.parse(events_from_feed)
-      calendar.first.events.each do |ie|
-        @events << Event.new(ie)
-      end
-    end
-
     def initialize(ical_event)
       # Goal: set values on self based on ical_event key
       wanted_keys = { summary: 'summary', dtend: 'end_date', 

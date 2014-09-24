@@ -23,13 +23,25 @@ Or install it yourself as:
 
 ### Configuration
 
-```calendar_url = 'https://icloud_public_url' # Add a link to your
-public calendar
+```
+# Add a link to your public calendar
+# Requires ical_url, other fields are optional
+
+ical_url = 'https://ical.com/example' #link to your public calendar
+
+# Rails-Style date helpers are available
+start_date = Date.today.beginning_of_month
+end_date = start_date + 28.days
+
+config = SimpleIcloudCalendar::Configuration.new(ical_url: ical_url, start_date: start_date, end_date: end_date)
 ```
 
 ### Find Events for the Current Month
 
-```SimpleIcloudCalendar::Calendar.find_events(calendar_url)
+```
+cal = SimpleIcloudCalendar::Calendar.new(config: config)
+cal.events # => 
+
 ```
 
 ## Contributing

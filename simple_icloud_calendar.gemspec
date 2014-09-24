@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "ice_cube"
   spec.add_runtime_dependency "icalendar"
-  spec.add_runtime_dependency "acive_support"
+  spec.add_runtime_dependency "activesupport"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "pry"
   spec.add_development_dependency "pry-remote"
