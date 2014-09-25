@@ -1,8 +1,9 @@
 module ApplicationHelper
 
-  def create_config(**opts)
-    opts[:ical_url] ||= 'https://p19-calendarws.icloud.com/ca/subscribe/1/G2F6yAt4vAI0VzSKzT0wvEKb1bj2Gxfo8lS3SfEeGi5haGjwbPhE9D9uuHBBH69DtTBN8luR44qJC5pljF6iLCJnkLNC-D0n3XfbeBef_fk'
-    SimpleIcloudCalendar::Configuration.new(opts)
+  def create_valid_config(file = nil)
+    file ||= 'weekly'
+    ical_file = File.open(File.expand_path("../../assets/#{file}.ics", __FILE__), 'r')
+    SimpleIcloudCalendar::Configuration.new(ical_file: ical_file)
   end
-
+  
 end

@@ -10,6 +10,13 @@ module SimpleIcloudCalendar
       wanted_keys.each do |key, value|
         self.send("#{value}=",ical_event.send(key))
       end
+      self.rules = self.rules.first
+    end
+
+    def schedule
+    end
+
+    def detect_rule
     end
 
     def convert_rules_to_icecube_format
@@ -18,6 +25,10 @@ module SimpleIcloudCalendar
     end
 
     def convert_weekly_event
+      schedule = IceCube::Schedule.new(Time.now) do |s|
+        s.add_recurrence_rule(IceCube::Rule.weekly)
+      end
+      schedule
     end
 
     def convert_daily_event
