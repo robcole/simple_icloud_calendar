@@ -3,7 +3,7 @@ require 'spec_helper'
 module SimpleIcloudCalendar
   describe Configuration do
 
-    let(:valid_config) { create_valid_config }
+    let(:valid_config) { default_config }
 
     describe "#initialize" do
       it "default start_date is beginning_of_month" do

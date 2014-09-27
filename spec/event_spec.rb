@@ -10,8 +10,8 @@ module SimpleIcloudCalendar
     # TODO: Mock this -- we should be passing in a valid Icalendar
     # Object and not worrying about how we get it (only interested in exercising
     # the Event model)
-    let(:calendar) { Calendar.new(create_valid_config) }
-    let(:ical_event) { create_valid_config.parsed_ical.events.first }
+    let(:calendar) { weekly_recurring_calendar }
+    let(:ical_event) { calendar_importer_mock.parsed_icalendar.events.first }
     let(:weekly_event) { Event.new(ical_event) }
 
     describe "#initialize" do

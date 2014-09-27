@@ -3,7 +3,7 @@ require 'spec_helper'
 module SimpleIcloudCalendar
   describe Calendar do
 
-    let(:calendar) { Calendar.new(create_valid_config) }
+    let(:calendar) { weekly_recurring_calendar }
 
     describe "#initialize" do
 
@@ -13,7 +13,6 @@ module SimpleIcloudCalendar
       end
 
     end
-
 
   end
 end
