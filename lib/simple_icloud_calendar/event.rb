@@ -1,6 +1,6 @@
 module SimpleIcloudCalendar
   class Event
-    attr_accessor :summary, :start_date, :end_date, :location, :rules, :schedule
+    attr_accessor :summary, :start_date, :end_date, :location, :schedule
 
     def initialize(ical_event)
       # Goal: set values on self based on ical_event key
@@ -8,9 +8,8 @@ module SimpleIcloudCalendar
                       dtstart: 'start_date', location: 'location',
                       rrule: 'rules' }
       wanted_keys.each do |key, value|
-        self.send("#{value}=",ical_event.send(key))
+        self.instance_variable_set("@#{value}", ical_event.send(key))
       end
-      self.rules = self.rules.first
     end
 
     def schedule
@@ -25,10 +24,10 @@ module SimpleIcloudCalendar
     end
 
     def convert_weekly_event
-      schedule = IceCube::Schedule.new(Time.now) do |s|
-        s.add_recurrence_rule(IceCube::Rule.weekly)
-      end
-      schedule
+      #schedule = IceCube::Schedule.new(Time.now) do |s|
+        #s.add_recurrence_rule(IceCube::Rule.weekly)
+      #end
+      #schedule
     end
 
     def convert_daily_event
