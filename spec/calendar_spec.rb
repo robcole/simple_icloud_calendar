@@ -24,10 +24,7 @@ module SimpleIcloudCalendar
         it "should find 0 events" do
           start_date = Date.today.beginning_of_year - 1.year
           end_date = start_date.end_of_month
-          config = Configuration.new(start_date: start_date,
-                                     end_date: end_date)
-
-          cal = Calendar.new(config)
+          cal = Calendar.new(start_date: start_date, end_date: end_date)
           cal.parsed_icalendar = calendar_importer_mock('weekly').parsed_icalendar
           expect(cal.events.size).to eq 0
         end

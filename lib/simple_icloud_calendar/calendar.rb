@@ -3,8 +3,8 @@ module SimpleIcloudCalendar
 
     attr_accessor :config, :events, :parsed_icalendar
 
-    def initialize(config)
-      @config = config
+    def initialize(**opts)
+      @config = Configuration.new(opts)
     end
 
     def ical_url

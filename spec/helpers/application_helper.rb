@@ -12,16 +12,16 @@ module ApplicationHelper
   end
 
   def load_calendar(file = 'non_recurring')
-    cal = Calendar.new(default_config)
+    cal = Calendar.new
     cal.parsed_icalendar = calendar_importer_mock(file).parsed_icalendar
     cal
   end
 
   def load_calendar_with_dates(**opts)
-    config = Configuration.new(start_date: opts[:start_date],
-                               end_date: opts[:end_date])
+    start_date = opts[:start_date]
+    end_date = opts[:end_date]
     file = opts[:file] || 'non_recurring'
-    cal = Calendar.new(config)
+    cal = Calendar.new(start_date: start_date, end_date: end_date)
     cal.parsed_icalendar = calendar_importer_mock(file).parsed_icalendar
     cal
   end
