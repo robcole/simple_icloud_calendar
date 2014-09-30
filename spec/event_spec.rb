@@ -8,7 +8,12 @@ module SimpleIcloudCalendar
     #   weekly, monthly, daily, and custom alerts
 
     let(:nonrecurring_event) { Event.new(mocked_ical_event) }
-    
+    let(:recurring_event) do
+      mie = mocked_ical_event(summary: 'Mock Recurring Event',
+                              rrule: 'Mock Recurrence Rules Here')
+      Event.new(mie)
+    end
+
     let(:weekly_event) do
       s = 'Weekly Recurring Event'
       dst = DateTime.now

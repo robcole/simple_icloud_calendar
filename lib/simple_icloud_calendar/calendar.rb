@@ -22,7 +22,7 @@ module SimpleIcloudCalendar
     end
 
     def events_json
-      Oj.dump(self.events)
+      events.map(&:to_hash).to_json
     end
 
     def start_date
