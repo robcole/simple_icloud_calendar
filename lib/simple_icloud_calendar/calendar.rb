@@ -21,12 +21,8 @@ module SimpleIcloudCalendar
       @events ||= generate_icalendar_events
     end
 
-    def generate_icalendar_events
-      unless parsed_icalendar.nil?
-        parsed_icalendar.events.map do |ie|
-          Event.new(ie)
-        end
-      end
+    def events_json
+      Oj.dump(self.events)
     end
 
     def start_date
@@ -35,6 +31,12 @@ module SimpleIcloudCalendar
 
     def end_date
       @config.end_date
+    end
+
+    def generate_icalendar_events
+      ical_events = parsed_icalendar.events
+      EventImporter.new(icalendar_events: ical_events,
+                        config: @config).events
     end
 
   end

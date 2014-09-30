@@ -9,9 +9,10 @@ module SimpleIcloudCalendar
     describe "#parsed_icalendar", :skip => true do
     end
 
-    describe "#ical_file", :skip => true do
+    describe "#ical_file" do
 
       it "should allow for manual passing of an icalendar ICS file" do
+        expect(calendar_importer_mock.class).to eq CalendarImporter
       end
 
     end

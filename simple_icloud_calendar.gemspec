@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "ice_cube"
   spec.add_runtime_dependency "icalendar"
+  spec.add_runtime_dependency "oj"
   spec.add_runtime_dependency "activesupport"
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "rspec"

@@ -13,8 +13,34 @@ module SimpleIcloudCalendar
     end
 
     describe "#events" do
-      it "should find 2 events" do
-        expect(calendar.events.size).to eq 2
+
+      context "event is within date range of config" do
+        it "should find 1 event" do
+          expect(calendar.events.size).to eq 1
+        end
+      end
+
+      context "event it outside date range of config" do
+        it "should find 0 events" do
+          start_date = Date.today.beginning_of_year - 1.year
+          end_date = start_date.end_of_month
+          config = Configuration.new(start_date: start_date,
+                                     end_date: end_date)
+
+          cal = Calendar.new(config)
+          cal.parsed_icalendar = calendar_importer_mock('weekly').parsed_icalendar
+          expect(cal.events.size).to eq 0
+        end
+
+      end
+
+    end
+
+    describe "#events_json" do
+
+      it "should output json" do
+        byebug
+        puts "Test"
       end
     end
 

@@ -3,6 +3,10 @@
 SimpleIcloudCalendar is a gem to read from public iCloud-hosted
 Calendars, in order to create locally hosted calendars.
 
+## Dependencies
+
+SimpleIcloudCalendar relies on [Oj](https://github.com/ohler55/oj) for JSON generation, [iCalendar 2.0](https://github.com/icalendar/icalendar) for parsing ical-formatted files, [ice cube](https://github.com/seejohnrun/ice_cube) for generating scheduling/recurrence rules for recurring events, and [ActiveSupport's time extensions](http://edgeguides.rubyonrails.org/active_support_core_extensions.html).
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -28,10 +32,8 @@ Or install it yourself as:
 # Requires ical_url, other fields are optional
 
 ical_url = 'https://ical.com/example' #link to your public calendar
-
-# Rails-Style date helpers are available
 start_date = Date.today.beginning_of_month
-end_date = start_date + 28.days
+end_date = start_date.end_of_month
 
 config = SimpleIcloudCalendar::Configuration.new(ical_url: ical_url, start_date: start_date, end_date: end_date)
 ```
