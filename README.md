@@ -5,7 +5,7 @@ Calendars, in order to create locally hosted calendars.
 
 ## Dependencies
 
-SimpleIcloudCalendar relies on [Oj](https://github.com/ohler55/oj) for JSON generation, [iCalendar 2.0](https://github.com/icalendar/icalendar) for parsing ical-formatted files, [ice cube](https://github.com/seejohnrun/ice_cube) for generating scheduling/recurrence rules for recurring events, and [ActiveSupport's time extensions](http://edgeguides.rubyonrails.org/active_support_core_extensions.html).
+SimpleIcloudCalendar uses ruby's built-in 'json' for JSON parsing/generation, [iCalendar 2.0](https://github.com/icalendar/icalendar) for parsing ical-formatted files, [ice cube](https://github.com/seejohnrun/ice_cube) for generating scheduling/recurrence rules for recurring events, and [ActiveSupport's time extensions](http://edgeguides.rubyonrails.org/active_support_core_extensions.html).
 
 ## Installation
 
@@ -42,8 +42,8 @@ config = SimpleIcloudCalendar::Configuration.new(ical_url: ical_url, start_date:
 
 ```
 cal = SimpleIcloudCalendar::Calendar.new(config: config)
-cal.events # => 
-
+cal.events # => # [Event1, Event2, Event3]
+cal.events_json => # JSONized version of events
 ```
 
 ## Contributing
