@@ -4,7 +4,7 @@ module SimpleIcloudCalendar
 
     def initialize(**opts)
       @ical_url = opts[:ical_url] || 'http://valid-testing-url.com'
-      self.start_date = opts[:start_at] || Date.today.beginning_of_month
+      self.start_date = opts[:start_date] || Date.today.beginning_of_month
       self.end_date = opts[:end_date] || (@start_date + 28.days)
     end
 

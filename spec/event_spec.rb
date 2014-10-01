@@ -8,6 +8,11 @@ module SimpleIcloudCalendar
     #   weekly, monthly, daily, and custom alerts
 
     let(:nonrecurring_event) { Event.new(mocked_ical_event) }
+    let(:recurring_event) do
+      mie = mocked_ical_event(summary: 'Mock Recurring Event',
+                              rrule: 'Mock Recurrence Rules Here')
+      Event.new(mie)
+    end
 
     let(:weekly_event) do
       s = 'Weekly Recurring Event'
@@ -31,7 +36,12 @@ module SimpleIcloudCalendar
     end
 
     describe "#recurring?" do
-      it "should return true when it is an instance of a recurring event", :skip => true do
+      it "should return true when it is an instance of a recurring event" do
+        expect(recurring_event.recurring?).to be true
+      end
+
+      it "should return false when it is not an instance of a recurring event" do
+        expect(nonrecurring_event.recurring?).to be false
       end
     end
 
