@@ -10,7 +10,7 @@ module SimpleIcloudCalendar
     end
 
     let(:recurring_event) do
-      load_calendar('weekly').parsed_icalendar.events.first
+      load_calendar(file: 'weekly').parsed_icalendar.events.first
     end
 
     let(:nonrecurring_event) do
@@ -26,7 +26,7 @@ module SimpleIcloudCalendar
 
     context "Calendar with One Time and Recurring Events" do
       let(:mixed_importer) do
-        cal = load_calendar('mixed')
+        cal = load_calendar(file: 'mixed')
         ical_events = cal.parsed_icalendar.events
         EventImporter.new(config: cal.config, icalendar_events: ical_events)
       end
@@ -75,8 +75,8 @@ module SimpleIcloudCalendar
       it "should not find events that fall outside the specified range" do
         start_date = Date.today.beginning_of_year - 1.year
         end_date = start_date.end_of_month
-        calendar = load_calendar_with_dates(start_date: start_date,
-                                            end_date: end_date)
+        calendar = load_calendar(start_date: start_date,
+                                 end_date: end_date)
         ical_events = calendar.parsed_icalendar.events
         event_importer = EventImporter.new(config: calendar.config,
                                            icalendar_events: ical_events)

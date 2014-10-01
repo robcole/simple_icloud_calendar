@@ -8,18 +8,14 @@ module ApplicationHelper
   end
 
   def default_config
-    Configuration.new
+    # Currently the raw ICS calendar files are time-sensitive with
+    # dates in September, so setting default start_date here of Sept 1
+    Configuration.new(start_date: DateTime.parse('01-09-2014'))
   end
 
-  def load_calendar(file = 'non_recurring')
-    cal = Calendar.new
-    cal.parsed_icalendar = calendar_importer_mock(file).parsed_icalendar
-    cal
-  end
-
-  def load_calendar_with_dates(**opts)
-    start_date = opts[:start_date]
-    end_date = opts[:end_date]
+  def load_calendar(**opts)
+    start_date = opts[:start_date] || default_config.start_date
+    end_date = opts[:end_date] || default_config.end_date
     file = opts[:file] || 'non_recurring'
     cal = Calendar.new(start_date: start_date, end_date: end_date)
     cal.parsed_icalendar = calendar_importer_mock(file).parsed_icalendar
