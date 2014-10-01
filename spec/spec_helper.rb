@@ -1,4 +1,3 @@
-require 'pry'
 require 'simple_icloud_calendar'
 require 'webmock/rspec'
 require_relative 'helpers/application_helper'
