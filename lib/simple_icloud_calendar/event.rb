@@ -1,12 +1,12 @@
 module SimpleIcloudCalendar
   class Event
-    attr_accessor :summary, :start_date, :end_date, :location, :schedule
+    attr_accessor :title, :start, :end, :location, :schedule
 
     def initialize(ical_event)
       # Goal: set values on self based on ical_event key
-      @summary = ical_event.summary
-      @start_date = ical_event.dtstart
-      @end_date = ical_event.dtend
+      @title = ical_event.summary
+      @start = ical_event.dtstart
+      @end = ical_event.dtend
       @location = ical_event.location
       @schedule = process_schedule(ical_event.rrule)
     end

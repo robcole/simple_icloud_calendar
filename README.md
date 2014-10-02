@@ -1,13 +1,16 @@
 # SimpleIcloudCalendar
 
 SimpleIcloudCalendar is a gem to read from public iCloud-hosted
-Calendars, in order to create locally hosted calendars.
+Calendars.
 
-## Dependencies
+---
 
-SimpleIcloudCalendar uses ruby's built-in 'json' for JSON parsing/generation, [iCalendar 2.0](https://github.com/icalendar/icalendar) for parsing ical-formatted files, [ice cube](https://github.com/seejohnrun/ice_cube) for generating scheduling/recurrence rules for recurring events, and [ActiveSupport's time extensions](http://edgeguides.rubyonrails.org/active_support_core_extensions.html).
+# Dependencies
 
-## Installation
+SimpleIcloudCalendar requires Ruby 2+, [iCalendar 2.0](https://github.com/icalendar/icalendar) for parsing ical-formatted files, [ice cube](https://github.com/seejohnrun/ice_cube) for generating scheduling/recurrence rules for recurring events, and [ActiveSupport's time extensions](http://edgeguides.rubyonrails.org/active_support_core_extensions.html).
+
+---
+# Installation
 
 Add this line to your application's Gemfile:
 
@@ -23,30 +26,44 @@ Or install it yourself as:
 
     $ gem install simple_icloud_calendar
 
-## Usage
+---
 
-### Configuration
+# Example Use
 
-```
-# Add a link to your public calendar
-# Requires ical_url, other fields are optional
+### With [FullCalendar](http://fullcalendar.io/) and Rails
 
-ical_url = 'https://ical.com/example' #link to your public calendar
-start_date = Date.today.beginning_of_month
-end_date = start_date.end_of_month
-
-config = SimpleIcloudCalendar::Configuration.new(ical_url: ical_url, start_date: start_date, end_date: end_date)
-```
-
-### Find Events for the Current Month
 
 ```
-cal = SimpleIcloudCalendar::Calendar.new(config: config)
-cal.events # => # [Event1, Event2, Event3]
-cal.events_json => # JSONized version of events
+# app/controllers/calendar_controller.rb
+#
+# start_date and end_date default to beginning and end of current month
+# if not included in options
+
+def index
+	calendar = SimpleIcloudCalendar::Calendar.new(
+		ical_url: 'https://icloud.com/example',
+		start_date: Date.today.beginning_of_month,
+		end_date: Date.today.end_of_month)
+	respond_with(calendar.events_json)
+end
 ```
 
-## Contributing
+calendar/index.html.erb
+```
+<script>
+$(document).ready(function () {
+    $('#calendar').fullCalendar({
+      events: '/calendar.json'
+      })
+    });
+</script>
+
+<div id="calendar">
+</div>
+```
+
+---
+# Contributing
 
 1. Fork it ( https://github.com/robcole/simple_icloud_calendar/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)

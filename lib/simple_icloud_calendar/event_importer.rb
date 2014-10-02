@@ -22,10 +22,6 @@ module SimpleIcloudCalendar
       ((@config.start_date)..(@config.end_date))
     end
 
-    def occurs_in_range?(event, date_range = self.date_range)
-
-    end
-
     def recurring_events
       self.icalendar_events.lazy.find_all do |event|
         recurring_event?(event)
