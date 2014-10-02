@@ -38,9 +38,9 @@ module SimpleIcloudCalendar
       it "should show the event in a JSONized format" do
         events = JSON.parse(calendar.events_json)
         event = events.first
-        expect(event["start_date"]).to eq '2014-09-27 13:00:00 -0700'
-        expect(event["end_date"]).to eq '2014-09-27 15:00:00 -0700'
-        expect(event["summary"]).to eq 'Samara Trip'
+        expect(event["start"]).to eq '2014-09-27 13:00:00 -0700'
+        expect(event["end"]).to eq '2014-09-27 15:00:00 -0700'
+        expect(event["title"]).to eq 'Samara Trip'
         expect(event["location"]).to eq ''
         expect(event["schedule"]).to eq nil
       end

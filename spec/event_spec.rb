@@ -30,8 +30,8 @@ module SimpleIcloudCalendar
     end
 
     describe "#summary" do
-      it "should return the default summary" do
-        expect(nonrecurring_event.summary).to eq 'A Stub of a Summary'
+      it "should return the default title" do
+        expect(nonrecurring_event.title).to eq 'A Stub of a Summary'
       end
     end
 
