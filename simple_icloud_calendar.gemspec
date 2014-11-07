@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "ice_cube"
-  spec.add_runtime_dependency "icalendar"
-  spec.add_runtime_dependency "activesupport"
+  spec.add_dependency "ice_cube"
+  spec.add_dependency "icalendar"
+  spec.add_dependency "activesupport"
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "rspec"
   spec.add_development_dependency "rspec-mocks"
