@@ -15,19 +15,8 @@ module SimpleIcloudCalendar
       @ical_file || load_ical_from_url(@ical_url)
     end
 
-    def check_ical_url(ical_url)
-      msg = "Failed to set ical_url to a valid iCalendar URL"
-      fail(msg) unless valid_url?(ical_url)
-    end
-
-    def valid_url?(url)
-      u = URI.parse(url)
-      u.kind_of?(URI::HTTP) || u.kind_of?(URI::HTTPS)
-    end
-
     def load_ical_from_url(url)
-      check_ical_url(url)
-      open(url)
+      IcloudRequest.new(url).ics_file
     end
 
     def parse_calendar(ical_file)
